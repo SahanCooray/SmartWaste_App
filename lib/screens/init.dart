@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/screens/authentication/authentication.dart';
+import 'package:test_app/widgets/buttons.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key});
@@ -107,31 +109,31 @@ class _InitState extends State<Init> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            FilledButton(
-                                onPressed: null,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('Login',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineMedium),
-                                  ],
-                                )),
+                            FilledButtonPrimary(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const Authenticate(
+                                              isSignIn: false,
+                                            )),
+                                  );
+                                },
+                                text: 'Login'),
                             const SizedBox(height: 20),
-                            FilledButton(
-                                onPressed: null,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('Register',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineMedium),
-                                  ],
-                                )),
+                            FilledButtonPrimary(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const Authenticate(
+                                              isSignIn: false,
+                                            )),
+                                  );
+                                },
+                                text: 'Register')
                           ],
                         ),
                       ),

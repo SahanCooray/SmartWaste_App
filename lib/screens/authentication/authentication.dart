@@ -3,25 +3,35 @@ import 'package:test_app/screens/authentication/register.dart';
 import 'package:test_app/screens/authentication/sign_in.dart';
 
 class Authenticate extends StatefulWidget {
-  const Authenticate({super.key});
+  final bool isSignIn;
+  const Authenticate({Key? key, required this.isSignIn}) : super(key: key);
 
   @override
   State<Authenticate> createState() => _AuthenticateState();
 }
 
 class _AuthenticateState extends State<Authenticate> {
-  bool singinPage=true;
-  void switchPages(){
+  late bool
+      signinPage; // Declare signinPage as late, to be initialized in initState()
+
+  @override
+  void initState() {
+    super.initState();
+    signinPage = widget
+        .isSignIn; // Initialize signinPage with the value of isSignIn passed to the widget
+  }
+
+  void switchPages() {
     setState(() {
-      singinPage=!singinPage;
+      signinPage = !signinPage;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (singinPage==true){
-      return Sign_In(toggle:switchPages);
-    }else{
+    if (signinPage == true) {
+      return Sign_In(toggle: switchPages);
+    } else {
       return Register(toggle: switchPages);
     }
   }

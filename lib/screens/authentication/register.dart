@@ -1,135 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/constants/styles.dart';
 import 'package:test_app/services/auth.dart';
+import 'package:test_app/widgets/buttons.dart';
+import 'package:test_app/widgets/form.dart';
 
 class Register extends StatefulWidget {
   final Function toggle;
-  const Register({Key? key,required this.toggle}):super(key: key);
+  const Register({Key? key, required this.toggle}) : super(key: key);
 
   @override
   State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-  final AuthServices _auth= AuthServices();
-  final _formKey=GlobalKey<FormState>();
-  String email="";
-  String password="";
-  String error="";
-  String phone='';
-  @override
+  final AuthServices _auth =
+      AuthServices(); // Assuming this is correctly set up
+  final _formKey = GlobalKey<FormState>();
+  String email = "";
+  String password = "";
+  String error = "";
+  String phone = '';
 
+  @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  const BoxDecoration(
-          image: DecorationImage( image:AssetImage('assets/back.jpg'),
-          fit: BoxFit.fill,),
-      ),
-      child:Scaffold(
+      color: Colors.white,
+      width: MediaQuery.of(context).size.width * 0.8,
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 50),
+      child: Scaffold(
         backgroundColor: Colors.transparent,
-        body:Center(
-          child: SingleChildScrollView(
-            child: Container( child:  Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Form(
-                  key: _formKey,
-                  child: Column(children: [
-                    Center(child: Image.asset('assets/smartwastenet.jpeg',height: 200,)),
-                    SizedBox(height: 30,),
-        
-                    TextFormField(
-                      decoration: textInputDecoration,
-                      validator: (val)=> val?.isEmpty == true ?"Enter a valid Email": null,
-                      onChanged: (val){
-                        setState(() {
-                          email=val;
-                        });
-                      },
-                      ),
-                    SizedBox(height: 20,),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: textInputDecoration.copyWith(hintText:'    Password' ),
-                      validator: (val)=> val!.length<6? "Enter a valid Password": null,
-                      onChanged: (val){
-                        setState(() {
-                          password=val;
-                        });
-                      },
-                      ),
-                       SizedBox(height: 20,),
-                      TextFormField(
-                      keyboardType: TextInputType.phone,
-                      decoration: textInputDecoration.copyWith(hintText:'    Phone number' ),
-                      validator: (val)=> val?.isEmpty == true ?"Enter a valid Phone number": null,
-                      onChanged: (val){
-                        setState(() {
-                          phone=val;
-                        });
-                      },
-                      ),
-                      SizedBox(height: 10,),
-                      Text(error,style: TextStyle(color: Colors.red),),
-                      Text('Login with Google',style: TextStyle(color: Colors.white),),
-                      GestureDetector(onTap: (){}, child: Center(child: Image.asset('assets/google_ic.png',height: 50,color: Colors.white,))),
-                      SizedBox(height: 20,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Do you have an account?',style: TextStyle(color: Colors.white)),
-                          const SizedBox(width: 10,),
-                          //go to signin page
-                          GestureDetector(onTap: (){
-                            widget.toggle();
-                          }, child: Text('LOGIN',style: TextStyle(color: Colors.lightBlueAccent,fontWeight: FontWeight.w600),))
-                        ],
-                      ),
-                      SizedBox(height: 20,),
-                      GestureDetector(
-                        //method for login user
-                        onTap: () async{
-                          dynamic result=await _auth.registerWithEmailAndPassword(email, password);
-                          
+        body: SafeArea(
+            top: true,
+            child: Center(
+                child: Container(
+                    width: MediaQuery.of(context).size.width * 0.85,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Column(
+                      children: [
+                        // Row(
+                        //   children: [
+                        //     OutlinedButtonPrimary(
+                        //       onPressed: () {
+                        //         Navigator.pop(context);
+                        //       },
+                        //       child: const Icon(
+                        //         Icons.arrow_back_ios_new,
+                        //         color: Colors.black,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                        Text('Welcome Back! Glad to see you, Again!',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                )),
+                        const SizedBox(height: 30),
+                        Form(
+                            key: _formKey,
+                            child: Column(
+                              children: [
+                                InputText(labelText: 'Email'),
+                                const SizedBox(height: 20),
+                                InputText(labelText: 'Password'),
+                                const SizedBox(height: 20),
+                                InputText(labelText: 'Phone'),
+                                const SizedBox(height: 20),
 
-                          if(result==null){
-                            setState(() {
-                              error="Please enter a valid email";
-                            });
-
-                          }
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 200,
-                          decoration: BoxDecoration(color: Color.fromARGB(255, 197, 253, 44),borderRadius: BorderRadius.circular(100),),
-                          child: Center(child: const Text('REGISTER',style: TextStyle(color: Color.fromARGB(255, 1, 31, 1),fontSize: 15),)),
-                        ),
-                      ),
-                      SizedBox(height: 15,),
-                      
-                  ]
-                  ,)
-                  ),
-              ]  
-            
-              
-            
-              
-              
-                  
-                  ),
-            
-                
-                
-                
-                  
-              
-              ),
-          ),
-        ),
-      )
+                                // const SizedBox(height: 20),
+                                // Text('Already have an account?'),
+                                // OutlinedButtonPrimary(
+                                //     onPressed: () {
+                                //       widget.toggle();
+                                //     },
+                                //     child: const Text('Sign In')),
+                              ],
+                            )),
+                      ],
+                    )))),
+      ),
     );
   }
 }
