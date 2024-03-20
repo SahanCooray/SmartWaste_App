@@ -5,7 +5,7 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: Colors.green,
 
-    primary: const Color(0xFF379F99),
+    primary: const Color.fromARGB(255, 21, 190, 119),
     onPrimary: const Color.fromARGB(199, 246, 252, 249),
 
     onSecondary: const Color.fromARGB(255, 0, 255, 179),
@@ -24,7 +24,7 @@ final ThemeData lightTheme = ThemeData(
         GoogleFonts.outfit(fontSize: 32, fontWeight: FontWeight.w600),
     headlineSmall:
         GoogleFonts.outfit(fontSize: 20, fontWeight: FontWeight.w500),
-    bodyLarge: GoogleFonts.sora(fontSize: 18, fontWeight: FontWeight.w600),
+    bodyLarge: GoogleFonts.sora(fontSize: 17, fontWeight: FontWeight.w600),
     bodyMedium: GoogleFonts.sora(fontSize: 14, fontWeight: FontWeight.w400),
   ),
 );

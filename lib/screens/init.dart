@@ -116,7 +116,7 @@ class _InitState extends State<Init> {
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             const Authenticate(
-                                              isSignIn: false,
+                                              isSignIn: true,
                                             )),
                                   );
                                 },

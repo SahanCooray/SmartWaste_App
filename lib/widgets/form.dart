@@ -12,7 +12,9 @@ class InputText extends StatelessWidget {
       obscureText: false,
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: Theme.of(context).textTheme.bodyMedium,
+        labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: Theme.of(context).colorScheme.outline,
+            ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.outlineVariant,
