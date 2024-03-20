@@ -4,9 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 final ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: Colors.green,
+
     primary: const Color(0xFF379F99),
     onPrimary: const Color.fromARGB(199, 246, 252, 249),
+
     onSecondary: const Color.fromARGB(255, 0, 255, 179),
+
+    surface: const Color.fromARGB(255, 241, 244, 248),
+
+    outlineVariant: const Color.fromARGB(255, 232, 236, 244),
 
     // ···
     brightness: Brightness.light,
@@ -19,6 +25,6 @@ final ThemeData lightTheme = ThemeData(
     headlineSmall:
         GoogleFonts.outfit(fontSize: 20, fontWeight: FontWeight.w500),
     bodyLarge: GoogleFonts.sora(fontSize: 18, fontWeight: FontWeight.w600),
-    bodyMedium: GoogleFonts.sora(fontSize: 15, fontWeight: FontWeight.w400),
+    bodyMedium: GoogleFonts.sora(fontSize: 14, fontWeight: FontWeight.w400),
   ),
 );

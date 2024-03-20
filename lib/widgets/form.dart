@@ -18,31 +18,32 @@ class InputText extends StatelessWidget {
             color: Theme.of(context).colorScheme.outlineVariant,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(16),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.outline,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(16),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.error,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(16),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.error,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(16),
         ),
-        filled: false,
-        contentPadding: const EdgeInsetsDirectional.fromSTEB(18, 15, 18, 15),
+        filled: true,
+        fillColor: Theme.of(context).colorScheme.surface,
+        contentPadding: const EdgeInsetsDirectional.fromSTEB(18, 10, 18, 10),
       ),
       style: Theme.of(context).textTheme.bodyMedium,
       keyboardType: TextInputType.emailAddress,
