@@ -20,7 +20,7 @@ class _TotalContributionState extends State<TotalContribution> {
           Container(
             decoration: BoxDecoration(
               image: const DecorationImage(
-                image: AssetImage("total_contribution.png"),
+                image: AssetImage("assets/total_contribution.png"),
                 fit: BoxFit.fill,
               ),
               borderRadius: BorderRadius.circular(20),
@@ -37,7 +37,7 @@ class _TotalContributionState extends State<TotalContribution> {
                     const Padding(
                       padding: EdgeInsets.only(right: 10), // Increase the right padding value to increase the column gap
                       child: Image(
-                        image: AssetImage("rysco.png"),
+                        image: AssetImage("assets/rysco.png"),
                         width: 50,
                         height: 50,
                       ),
@@ -177,7 +177,7 @@ class _MyContributionState extends State<MyContribution> {
                             const Padding(
                               padding: EdgeInsets.only(right: 10,top:10), // Increase the right padding value to increase the column gap
                               child: Image(
-                                image: AssetImage("rysco.png"),
+                                image: AssetImage("assets/rysco.png"),
                                 width: 40,
                               ),
                             ),
@@ -242,7 +242,7 @@ class _LatestRyscoState extends State<LatestRysco> {
           child: const Row(
             children: [
               Image(
-                image: AssetImage("rysco.png"),
+                image: AssetImage("assets/rysco.png"),
                 width: 40,
               ),
               Padding(
