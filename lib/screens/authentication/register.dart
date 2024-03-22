@@ -67,15 +67,28 @@ class _RegisterState extends State<Register> {
                                 key: _formKey,
                                 child: Column(
                                   children: [
-                                    const InputText(labelText: 'First Name'),
+                                    const InputName(labelText: 'First Name'),
                                     const SizedBox(height: 20),
-                                    const InputText(labelText: 'Last Name'),
+                                    const InputName(labelText: 'Last Name'),
                                     const SizedBox(height: 20),
-                                    const InputText(labelText: 'Email'),
+                                    InputEmail(
+                                        labelText: 'Email',
+                                        onChange: (String? value) {
+                                          setState(() {
+                                            email = value!;
+                                          });
+                                        }),
                                     const SizedBox(height: 20),
-                                    const InputText(labelText: 'Phone'),
+                                    const InputPhone(labelText: 'Phone'),
                                     const SizedBox(height: 20),
-                                    const InputText(labelText: 'Password'),
+                                    InputPassword(
+                                      labelText: 'Password',
+                                      onChange: (String? value) {
+                                        setState(() {
+                                          password = value!;
+                                        });
+                                      },
+                                    ),
                                     const SizedBox(height: 20),
                                     FilledButtonSecondary(
                                         onPressed: () async {
@@ -191,7 +204,7 @@ class _RegisterState extends State<Register> {
                                             email, password);
                                     if (result == null) {
                                       setState(() {
-                                        error = 'Please supply a valid email';
+                                        error = 'registration failed';
                                       });
                                     }
                                   }

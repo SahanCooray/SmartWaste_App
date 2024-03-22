@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_app/widgets/buttons.dart';
 import 'package:test_app/widgets/form.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
-
+import 'package:test_app/models/user_model.dart';
 import 'package:test_app/services/auth.dart';
 
 class Sign_In extends StatefulWidget {
@@ -63,9 +63,23 @@ class _Sign_InState extends State<Sign_In> {
                             key: _formKey,
                             child: Column(
                               children: [
-                                const InputText(labelText: 'Email'),
+                                InputEmail(
+                                  labelText: 'Email',
+                                  onChange: (String? value) {
+                                    setState(() {
+                                      email = value!;
+                                    });
+                                  },
+                                ),
                                 const SizedBox(height: 20),
-                                const InputText(labelText: 'Password'),
+                                InputPassword(
+                                  labelText: 'Password',
+                                  onChange: (String? value) {
+                                    setState(() {
+                                      password = value!;
+                                    });
+                                  },
+                                ),
                                 const SizedBox(height: 20),
                                 FilledButtonSecondary(
                                     onPressed: () async {
@@ -73,7 +87,9 @@ class _Sign_InState extends State<Sign_In> {
                                         dynamic result = await _auth
                                             .registerWithEmailAndPassword(
                                                 email, password);
-                                        if (result == null) {
+                                        if (result != null) {
+                                          UserModel(uid: result.uid);
+                                        } else {
                                           setState(() {
                                             error =
                                                 'Please supply a valid email';
@@ -138,18 +154,7 @@ class _Sign_InState extends State<Sign_In> {
                         ),
 
                         OutlinedButtonPrimary(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                dynamic result =
-                                    await _auth.registerWithEmailAndPassword(
-                                        email, password);
-                                if (result == null) {
-                                  setState(() {
-                                    error = 'Please supply a valid email';
-                                  });
-                                }
-                              }
-                            },
+                            onPressed: () async {},
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -170,18 +175,7 @@ class _Sign_InState extends State<Sign_In> {
                             )),
                         const SizedBox(height: 10),
                         OutlinedButtonPrimary(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                dynamic result =
-                                    await _auth.registerWithEmailAndPassword(
-                                        email, password);
-                                if (result == null) {
-                                  setState(() {
-                                    error = 'Please supply a valid email';
-                                  });
-                                }
-                              }
-                            },
+                            onPressed: () async {},
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
