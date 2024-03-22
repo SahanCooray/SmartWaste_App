@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/widgets/buttons.dart';
 import 'package:test_app/widgets/form.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:test_app/models/user_model.dart';
 import 'package:test_app/services/auth.dart';
+import 'package:test_app/widgets/navbar.dart';
 
 class Sign_In extends StatefulWidget {
   final Function toggle;
@@ -87,15 +89,47 @@ class _Sign_InState extends State<Sign_In> {
                                         onPressed: () async {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            dynamic result = await _auth
-                                                .registerWithEmailAndPassword(
-                                                    email, password);
-                                            if (result != null) {
-                                              UserModel(uid: result.uid);
-                                            } else {
+                                            try {
+                                              dynamic result = await _auth
+                                                  .registerWithEmailAndPassword(
+                                                      email, password);
+                                              if (result != null) {
+                                                UserModel(uid: result.uid);
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const NavBar()),
+                                                );
+                                              }
+                                            } on FirebaseAuthException catch (e) {
+                                              String errorMessage;
+                                              // Handle different Firebase Auth exceptions
+                                              switch (e.code) {
+                                                case 'invalid-email':
+                                                  errorMessage =
+                                                      'The email address is badly formatted.';
+                                                  break;
+                                                case 'weak-password':
+                                                  errorMessage =
+                                                      'The password is too weak.';
+                                                  break;
+                                                case 'email-already-in-use':
+                                                  errorMessage =
+                                                      'The account already exists for that email.';
+                                                  break;
+                                                default:
+                                                  errorMessage =
+                                                      'An undefined Error happened.';
+                                              }
+                                              setState(() {
+                                                error = errorMessage;
+                                              });
+                                            } catch (e) {
+                                              // Handle any other exceptions
                                               setState(() {
                                                 error =
-                                                    'Please supply a valid email';
+                                                    'An error occurred. Please try again.';
                                               });
                                             }
                                           }

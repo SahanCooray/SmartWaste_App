@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/models/user_model.dart';
 import 'package:test_app/services/auth.dart';
 import 'package:test_app/widgets/buttons.dart';
 import 'package:test_app/widgets/form.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:test_app/widgets/navbar.dart';
+import 'package:toastification/toastification.dart';
 
 class Register extends StatefulWidget {
   final Function toggle;
@@ -166,12 +170,55 @@ class _RegisterState extends State<Register> {
                             OutlinedButtonPrimary(
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
-                                    dynamic result = await _auth
-                                        .registerWithEmailAndPassword(
-                                            email, password);
-                                    if (result == null) {
+                                    try {
+                                      dynamic result = await _auth
+                                          .registerWithEmailAndPassword(
+                                              email, password);
+                                      if (result != null) {
+                                        UserModel(uid: result.uid);
+                                        toastification.show(
+                                          context: context,
+                                          title: Text('Hello, world!'),
+                                          autoCloseDuration:
+                                              const Duration(seconds: 5),
+                                        );
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const NavBar()),
+                                        );
+                                      }
+                                    } on FirebaseAuthException catch (e) {
+                                      switch (e.code) {
+                                        case 'email-already-in-use':
+                                          print("hi");
+                                          toastification.show(
+                                            context: context,
+                                            type: ToastificationType.error,
+                                            alignment: Alignment.bottomCenter,
+                                            title: const Text(
+                                                'Email Already in use'),
+                                            autoCloseDuration:
+                                                const Duration(seconds: 5),
+                                          );
+                                          break;
+                                        default:
+                                          toastification.show(
+                                            context: context,
+                                            type: ToastificationType.error,
+                                            alignment: Alignment.bottomCenter,
+                                            title: const Text(
+                                                'An unexpected error occured.'),
+                                            autoCloseDuration:
+                                                const Duration(seconds: 5),
+                                          );
+                                      }
+                                    } catch (e) {
+                                      // Handle any other exceptions
                                       setState(() {
-                                        error = 'Please supply a valid email';
+                                        error =
+                                            'An error occurred. Please try again.';
                                       });
                                     }
                                   }
