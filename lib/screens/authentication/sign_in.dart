@@ -91,45 +91,25 @@ class _Sign_InState extends State<Sign_In> {
                                               .validate()) {
                                             try {
                                               dynamic result = await _auth
-                                                  .registerWithEmailAndPassword(
+                                                  .signInUsingEmailAndPassword(
                                                       email, password);
+                                              // Assuming result contains a user object on successful login
                                               if (result != null) {
-                                                UserModel(uid: result.uid);
-                                                Navigator.push(
+                                                // Navigate to another screen upon successful login
+                                                Navigator.pushAndRemoveUntil(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           const NavBar()),
+                                                  (Route<dynamic> route) =>
+                                                      false, // Remove all the routes beneath
                                                 );
                                               }
-                                            } on FirebaseAuthException catch (e) {
-                                              String errorMessage;
-                                              // Handle different Firebase Auth exceptions
-                                              switch (e.code) {
-                                                case 'invalid-email':
-                                                  errorMessage =
-                                                      'The email address is badly formatted.';
-                                                  break;
-                                                case 'weak-password':
-                                                  errorMessage =
-                                                      'The password is too weak.';
-                                                  break;
-                                                case 'email-already-in-use':
-                                                  errorMessage =
-                                                      'The account already exists for that email.';
-                                                  break;
-                                                default:
-                                                  errorMessage =
-                                                      'An undefined Error happened.';
-                                              }
-                                              setState(() {
-                                                error = errorMessage;
-                                              });
                                             } catch (e) {
-                                              // Handle any other exceptions
                                               setState(() {
-                                                error =
-                                                    'An error occurred. Please try again.';
+                                                // Extracting a user-friendly error message from Firebase exception
+                                                error = e
+                                                    .toString(); // Consider using a function to parse the error message
                                               });
                                             }
                                           }
