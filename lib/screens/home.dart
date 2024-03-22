@@ -1,5 +1,7 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:test_app/services/auth.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -28,7 +30,7 @@ class _HomeState extends State<Home> {
         //     Icon(Icons.person)
         //   ],  
         // ),
-        backgroundColor: Color.fromARGB(255, 225, 230, 225),
+        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
@@ -36,21 +38,24 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(height: 180,width: 180,child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Center(child: const Text("Hi Sahan!!,Good Morning",style: TextStyle(fontSize:30,fontWeight:FontWeight.w500,))),
-                    )),
-                    
-                    ElevatedButton(onPressed: ()async{
-                      await _auth.signOut();
-                      }, child: const Icon(Icons.logout_outlined))
-                  ],
+                const Padding(
+                  padding: EdgeInsets.only(left: 30,top: 30),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Hi!!\nGood Morning,\nYehen",style: TextStyle(fontSize:30,fontWeight:FontWeight.w500,color: Color.fromRGBO(55, 159, 153, 1.0)))),
+                ),     
+                Container(
+                  decoration: BoxDecoration(
+                    image: const DecorationImage(
+                      image: AssetImage("assets/keels.png"),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  width: 340,
+                  height: 140,
+                  margin: const EdgeInsets.only(top: 20),
                 ),
-                const SizedBox(height: 5),
-                Center(child: Image.asset('assets/keels.png',height: 200,)),
                 const SizedBox(height: 2),
                 Center(child: Image.asset('assets/DailyProgress.png',height: 200,)),
                 
@@ -63,15 +68,10 @@ class _HomeState extends State<Home> {
                         Image.asset('assets/box-2.png',height: 100,)
                       ], ),
                       // const SizedBox(width:50,),
-                      Center(child: Image.asset('assets/Donut.png',height: 200,))
-                      
-                                
-                      
+                      Center(child: Image.asset('assets/Donut.png',height: 210,))
                     ],
-                  
                   ),
-                
-            
+              const SizedBox(height: 100),
               ],
             
             ),
