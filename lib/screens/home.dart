@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:test_app/services/auth.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,23 +18,16 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // bottomNavigationBar: CurvedNavigationBar(
+
+        //   bottomNavigationBar: CurvedNavigationBar(
         //   backgroundColor: Colors.transparent,
         //   color: Colors.green,
         //   animationDuration: Duration(milliseconds: 300),
         //   items: [
         //     Icon(Icons.home),
-        //     Icon(Icons.home),
-        //     Icon(Icons.home),
-        //   ],
-          
-          
+        //     Icon(Icons.person)
+        //   ],  
         // ),
-
-        
-
-
-
         backgroundColor: Color.fromARGB(255, 225, 230, 225),
         body: Padding(
           padding: const EdgeInsets.all(10.0),

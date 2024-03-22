@@ -1,22 +1,20 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-
-import 'package:test_app/screens/home/home.dart';
+import 'package:test_app/screens/home.dart';
 import 'package:test_app/screens/leaderboard.dart';
-import 'package:test_app/screens/profile.dart';
+import 'package:test_app/screens/profile/profile.dart';
 import 'package:test_app/screens/redeems.dart';
 import 'package:test_app/screens/settings.dart';
 
 
-class CurveBar extends StatefulWidget {
-  const CurveBar({super.key});
+class NavBar extends StatefulWidget {
+  const NavBar({super.key});
 
   @override
-  State<CurveBar> createState() => _CurveBarState();
+  State<NavBar> createState() => _CurveBarState();
 }
 
-class _CurveBarState extends State<CurveBar> {
+class _CurveBarState extends State<NavBar> {
   int index = 0;
   final screen = const [
     Home(),
@@ -56,7 +54,7 @@ class _CurveBarState extends State<CurveBar> {
           )),
           child: CurvedNavigationBar(
             // navigationBar colors
-            color: Color.fromARGB(255, 25, 158, 25),
+            color: Color.fromARGB(255, 65, 154, 149),
             //selected times colors
             buttonBackgroundColor: Color.fromARGB(255, 3, 53, 11),
             backgroundColor: Colors.transparent,

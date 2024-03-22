@@ -8,6 +8,7 @@ import 'package:test_app/services/auth.dart';
 class Sign_In extends StatefulWidget {
   final Function toggle;
   const Sign_In({Key? key, required this.toggle}) : super(key: key);
+  
 
   @override
   State<Sign_In> createState() => _Sign_InState();
@@ -69,17 +70,20 @@ class _Sign_InState extends State<Sign_In> {
                                 const SizedBox(height: 20),
                                 FilledButtonSecondary(
                                     onPressed: () async {
-                                      if (_formKey.currentState!.validate()) {
-                                        dynamic result = await _auth
-                                            .registerWithEmailAndPassword(
-                                                email, password);
-                                        if (result == null) {
-                                          setState(() {
-                                            error =
-                                                'Please supply a valid email';
-                                          });
-                                        }
-                                      }
+                                      // if (_formKey.currentState!.validate()) {
+                                      //   dynamic result = await _auth
+                                      //       .registerWithEmailAndPassword(
+                                      //           email, password);
+                                      //   if (result == null) {
+                                      //     setState(() {
+                                      //       error =
+                                      //           'Please supply a valid email';
+                                      //     });
+                                      //   }
+                                      // }
+                                      // go to home.dart
+                                      widget.toggle();
+                      
                                     },
                                     text: "Login"),
                                 const SizedBox(height: 20),
@@ -147,7 +151,7 @@ class _Sign_InState extends State<Sign_In> {
                                   setState(() {
                                     error = 'Please supply a valid email';
                                   });
-                                }
+                                } 
                               }
                             },
                             child: Row(
