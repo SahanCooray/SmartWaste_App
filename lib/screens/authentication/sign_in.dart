@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/widgets/buttons.dart';
 import 'package:test_app/widgets/form.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:test_app/models/user_model.dart';
 import 'package:test_app/services/auth.dart';
+import 'package:test_app/widgets/navbar.dart';
 
 class Sign_In extends StatefulWidget {
   final Function toggle;
@@ -87,15 +89,27 @@ class _Sign_InState extends State<Sign_In> {
                                         onPressed: () async {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            dynamic result = await _auth
-                                                .registerWithEmailAndPassword(
-                                                    email, password);
-                                            if (result != null) {
-                                              UserModel(uid: result.uid);
-                                            } else {
+                                            try {
+                                              dynamic result = await _auth
+                                                  .signInUsingEmailAndPassword(
+                                                      email, password);
+                                              // Assuming result contains a user object on successful login
+                                              if (result != null) {
+                                                // Navigate to another screen upon successful login
+                                                Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const NavBar()),
+                                                  (Route<dynamic> route) =>
+                                                      false, // Remove all the routes beneath
+                                                );
+                                              }
+                                            } catch (e) {
                                               setState(() {
-                                                error =
-                                                    'Please supply a valid email';
+                                                // Extracting a user-friendly error message from Firebase exception
+                                                error = e
+                                                    .toString(); // Consider using a function to parse the error message
                                               });
                                             }
                                           }

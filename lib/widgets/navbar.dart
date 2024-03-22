@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:test_app/screens/home.dart';
 import 'package:test_app/screens/leaderboard.dart';
 import 'package:test_app/screens/profile/profile.dart';
 import 'package:test_app/screens/redeems.dart';
 import 'package:test_app/screens/settings.dart';
-
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -27,17 +27,19 @@ class _CurveBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final items = [
-      const Icon(Icons.home, size: 30),
-      const Icon(Icons.leaderboard, size: 30),
-      const Icon(Icons.wallet_giftcard_rounded, size: 30),
-      const Icon(Icons.person, size: 30),
-      const Icon(Icons.settings, size: 30)
+      const Icon(
+        PhosphorIcons.house_bold,
+        size: 32,
+      ),
+      const Icon(PhosphorIcons.chart_bar_bold, size: 32),
+      const Icon(PhosphorIcons.gift_bold, size: 32),
+      const Icon(PhosphorIcons.user_bold, size: 32),
+      const Icon(PhosphorIcons.gear_bold, size: 32)
     ];
     return SafeArea(
       child: Scaffold(
-        
         extendBody: true,
-        
+
         body: screen[index],
         // Center(
         //   child: Text(
@@ -54,9 +56,9 @@ class _CurveBarState extends State<NavBar> {
           )),
           child: CurvedNavigationBar(
             // navigationBar colors
-            color: Color.fromARGB(255, 65, 154, 149),
+            color: Theme.of(context).colorScheme.primary,
             //selected times colors
-            buttonBackgroundColor: Color.fromARGB(255, 3, 53, 11),
+            buttonBackgroundColor: Theme.of(context).colorScheme.primary,
             backgroundColor: Colors.transparent,
             items: items,
             height: 60,
