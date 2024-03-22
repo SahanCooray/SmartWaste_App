@@ -27,14 +27,11 @@ class _CurveBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final items = [
-      const Icon(
-        PhosphorIcons.house_bold,
-        size: 32,
-      ),
-      const Icon(PhosphorIcons.chart_bar_bold, size: 32),
-      const Icon(PhosphorIcons.gift_bold, size: 32),
-      const Icon(PhosphorIcons.user_bold, size: 32),
-      const Icon(PhosphorIcons.gear_bold, size: 32)
+      const Icon(PhosphorIcons.house_bold,size: 30,),
+      const Icon(PhosphorIcons.chart_bar_bold, size: 30),
+      const Icon(PhosphorIcons.gift_bold, size: 30),
+      const Icon(PhosphorIcons.user_bold, size: 30),
+      const Icon(PhosphorIcons.gear_bold, size: 30)
     ];
     return SafeArea(
       child: Scaffold(
@@ -56,12 +53,12 @@ class _CurveBarState extends State<NavBar> {
           )),
           child: CurvedNavigationBar(
             // navigationBar colors
-            color: Theme.of(context).colorScheme.primary,
+            color: const Color.fromRGBO(65, 154, 149, 1),
             //selected times colors
-            buttonBackgroundColor: Theme.of(context).colorScheme.primary,
+            buttonBackgroundColor: const Color.fromRGBO(65, 154, 149, 1),
             backgroundColor: Colors.transparent,
             items: items,
-            height: 60,
+            height: 55,
             index: index,
             onTap: (index) => setState(
               () => this.index = index,
